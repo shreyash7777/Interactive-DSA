@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Data Structures & Algorithms</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Controls Panel -->
+  <div id="controls">
+    <h2>Interactive DS</h2>
+    <label for="ds-select">Choose Data Structure:</label>
+    <select id="ds-select">
+      <option value="">Select Data Structure</option>
+      <option value="stack">Stack</option>
+      <option value="linked-list">Linked List</option>
+      <option value="queue">Queue</option>
+      <option value="bubble-sort">Bubble Sort</option>
+      <option value="insertion-sort">Insertion Sort</option>
+      <option value="double-linked-list">Doubly Linked List</option>
+    </select>
+    
+    <!-- Size input for Stack and Queue -->
+    <div id="size-container">
+      <label for="ds-size">Size (max elements):</label>
+      <input type="number" id="ds-size" placeholder="Enter size" min="1" />
+    </div>
+    
+    <button id="create-ds-btn">Create Data Structure</button>
+    
+    <hr style="margin: 20px 0; border: 1px solid #444;" />
+    
+    <!-- Insertion controls -->
+    <label for="element-input">Element (for Insertion):</label>
+    <input type="number" id="element-input" placeholder="Enter element" disabled />
+    <button id="insert-btn" disabled style="background-color: #006400;">Insert</button>
+    
+    <!-- Linked List removal options -->
+    <div id="ll-remove-options" style="display: none;">
+      <label for="ll-remove-mode">Removal Mode:</label>
+      <select id="ll-remove-mode">
+        <option value="last">Remove Last</option>
+        <option value="value">Remove by Value</option>
+      </select>
+      <input type="number" id="removal-input" placeholder="Enter value to remove" />
+    </div>
+    
+    <button id="peek-btn" disabled style="background-color: #4682B4; display: none;">Peek</button>
+    <button id="remove-btn" disabled style="background-color: #b22222;">Remove</button>
+  </div>
+  
+  <!-- DS Display Area (for Stack, Linked List, and Queue) -->
+  <div id="ds-container">
+    <div id="stack-container" style="display: none;"></div>
+    <div id="ll-container" style="display: none;"></div>
+    <div id="queue-container" style="display: none;"></div>
+  </div>
+  
+  <!-- Bubble Sort Visualizer Section (hidden by default) -->
+  <div id="bubble-sort-section" style="display: none;">
+    <h2>Bubble Sort Visualizer</h2>
+    <p>Enter numbers separated by commas (e.g., 5, 3, 8, 4, 2):</p>
+    <input type="text" id="bubble-input" placeholder="Enter numbers separated by commas">
+    <br>
+    <button id="start-bubble-sort">Start Bubble Sort</button>
+    <button id="bubble-forward">Go Forward</button>
+    <button id="bubble-backward">Go Backward</button>
+    <div id="bubble-container"></div>
+  </div>
+  <section id="insertion-sort-section" style="display: none;">
+    <h2>Insertion Sort Visualizer</h2>
+    <p>Enter numbers separated by commas (e.g., 5, 8, 3, 1, 6):</p>
+    <input type="text" id="insertion-input" placeholder="Enter numbers separated by commas">
+    <br>
+    <button id="start-insertion-sort">Start Insertion Sort</button>
+    <button id="insertion-forward">Go Forward</button>
+    <button id="insertion-backward">Go Backward</button>
+    <div id="insertion-key" style="display: none; font-size: 20px; color: yellow; margin-top: 10px;"></div>
+
+    <div id="insertion-container"></div>
+  </section>
+  
+  <!-- Load the main script (as a module so it can import bubble-sort.js) -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>

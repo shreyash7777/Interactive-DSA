@@ -1,0 +1,479 @@
+/* ---------- Global Styles ---------- */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: white;
+  font-family: sans-serif;
+  display: flex;
+  height: 100vh;
+}
+
+/* ---------- Left Controls Panel ---------- */
+#controls {
+  width: 250px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-right: 2px solid #444;
+}
+
+#controls h2 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+#controls label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+#controls select,
+#controls input,
+#controls button {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+  border: 1px solid #444;
+  background-color: #333;
+  color: white;
+  border-radius: 4px;
+}
+
+#controls button {
+  cursor: pointer;
+  background-color: green;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+#controls button:hover {
+  background-color: #4CAF50;
+}
+
+/* Container for size input – shown for Stack and Queue */
+#size-container {
+  display: none;
+}
+
+/* Container for linked list removal options – shown only for Linked List */
+#ll-remove-options {
+  display: none;
+  border: 1px solid #444;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background-color: #222;
+}
+
+#ll-remove-options label {
+  display: block;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Removal input for linked list removal by value – hidden by default */
+#removal-input {
+  display: none;
+  width: 100%;
+  padding: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+  border: 1px solid #444;
+  background-color: #333;
+  color: white;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+/* Peek button for queue – hidden by default */
+#peek-btn {
+  display: none;
+}
+
+/* ---------- Center DS Display Area ---------- */
+#ds-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow-x: auto;
+  padding: 20px;
+}
+
+/* ---------- STACK CSS (Vertical) ---------- */
+#stack-container {
+  width: 100px;
+  position: relative;
+  border-left: 2px solid green;
+  border-right: 2px solid green;
+  border-bottom: 2px solid green;
+  background-color: #000;
+  /* Height set dynamically based on size */
+}
+
+.stack-slot {
+  width: 100%;
+  height: 55px;
+  border-top: 1px dashed green;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+}
+
+.slot-content {
+  width: 100%;
+  height: 55px;
+  line-height: 55px;
+  text-align: center;
+  color: white;
+  background-color: green;
+  position: absolute;
+  left: 0;
+  transition: top 0.8s ease;
+}
+
+.falling {
+  top: -60px;
+}
+
+.top-stick {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: green;
+  transition: top 0.8s ease;
+}
+
+/* ---------- LINKED LIST CSS (Horizontal) ---------- */
+#ll-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px;
+}
+
+.ll-wrapper {
+  display: flex;
+  align-items: center;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.falling-node {
+  transform: translateY(100px);
+  opacity: 0;
+}
+
+.ll-node {
+  display: flex;
+  align-items: center;
+  border: 2px solid green;
+  background-color: green;
+  height: 60px;
+  width: 130px; /* 100px for value + 30px for pointer */
+  position: relative;
+  border-radius: 4px;
+}
+
+.node-value {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+  color: white;
+  font-size: 18px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.node-pointer {
+  width: 30px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: black;
+  font-size: 12px;
+  border-left: 2px solid green;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.connector {
+  height: 2px;
+  background-color: green;
+  width: 0;
+  transition: width 0.8s ease;
+  align-self: center;
+  margin: 0 5px;
+}
+
+.ll-null {
+  width: 50px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  border: 2px solid green;
+  border-left: none;
+  border-radius: 4px;
+}
+
+/* ---------- QUEUE CSS (Horizontal, Like Stack) ---------- */
+#queue-container {
+  position: relative;
+  background-color: #000;
+  /* Only top and bottom borders, leaving left/right ends open */
+  border-top: 2px solid green;
+  border-bottom: 2px solid green;
+  border-left: none;
+  border-right: none;
+  border-radius: 4px;
+  height: 80px;
+  /* Width is set to exactly fit the number of cells */
+}
+
+.queue-cell {
+  position: absolute;
+  top: 0;
+  width: 60px;
+  height: 60px;
+  /* Use dark green dashed borders for each cell */
+  border-right: 1px dashed green;
+  border-left: 1px dashed green;
+  background-color: #000;
+  box-sizing: border-box;
+}
+
+/* Add open ends: no left border on first cell and no right border on last cell */
+.queue-cell.first {
+  border-left: none;
+}
+
+.queue-cell.last {
+  border-right: none;
+}
+
+.queue-element {
+  width: 60px;
+  height: 60px;
+  background-color: green;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  border-radius: 4px;
+  transition: left 0.8s ease, opacity 0.8s ease;
+}
+
+/* Pointer labels for queue cells (vertical pointers) */
+.pointer-label {
+  position: absolute;
+  width: 60px;
+  text-align: center;
+  font-size: 12px;
+  color: yellow;
+}
+
+/* Rear pointer: placed above the occupied cell */
+.rear-pointer {
+  top: -20px;
+  transform: none;
+}
+
+/* Front pointer: placed below the occupied cell */
+.front-pointer {
+  bottom: -20px;
+  transform: none;
+}
+/* === Bubble Sort Visualizer Styles === */
+#bubble-sort-section {
+  margin: 20px;
+  padding: 10px;
+  border: 2px solid #444;
+  background-color: #222;
+  color: white;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+}
+
+#bubble-sort-section h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+#bubble-sort-section p {
+  margin-bottom: 10px;
+}
+
+#bubble-sort-section input {
+  width: 80%;
+  padding: 8px;
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+#bubble-sort-section button {
+  padding: 8px 16px;
+  margin: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: green;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+#bubble-sort-section button:hover {
+  background-color: #4CAF50;
+}
+
+/* The container where the array is displayed */
+#bubble-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;           /* Fixed height for blocks */
+  width: 100%;
+  border: 2px solid #fff;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #000;
+}
+
+/* Each array element as a fixed-size block */
+.bubble-bar {
+  position: relative;  /* For absolutely positioned pointer arrow */
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+  background-color: green;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid green;
+  border-radius: 4px;
+  transition: background-color 0.5s ease;
+}
+
+/* When an element is being compared, show it in red */
+.bubble-bar.swapping {
+  background-color: red;
+}
+
+/* Style for the pointer arrow */
+.swap-arrow {
+  position: absolute;
+  bottom: 50px; /* Adjust to place arrow below the block */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: yellow;
+}
+/* === Insertion Sort Visualizer Styles === */
+#insertion-sort-section {
+  margin: 20px;
+  padding: 10px;
+  border: 2px solid #444;
+  background-color: #222;
+  color: white;
+  font-family: sans-serif;
+}
+
+#insertion-sort-section h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+#insertion-sort-section p {
+  margin-bottom: 10px;
+}
+
+#insertion-sort-section input {
+  width: 80%;
+  padding: 8px;
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+#insertion-sort-section button {
+  padding: 8px 16px;
+  margin: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: green;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+#insertion-sort-section button:hover {
+  background-color: #4CAF50;
+}
+
+/* Container for the insertion sort array */
+#insertion-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  border: 2px solid #fff;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #000;
+}
+
+/* Insertion Sort blocks */
+.insertion-bar {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+  background-color: green;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid green;
+  border-radius: 4px;
+  transition: background-color 0.5s ease;
+}
+
+/* When an element is flagged as key or shifting, turn it red */
+.insertion-bar.swapping {
+  background-color: red;
+}
+
+/* Style for the pointer arrow */
+.swap-arrow {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: yellow;
+}
+
+/* Style for the external key display (if needed) */
+#insertion-key {
+  text-align: center;
+}

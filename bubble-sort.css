@@ -1,0 +1,98 @@
+/* === Bubble Sort Visualizer Styles === */
+#bubble-sort-section {
+  /* Center the section horizontally (and optionally vertically if needed) */
+  margin: 20px auto;         /* auto left/right centers the block if a width is set */
+  padding: 10px;
+  border: 2px solid #444;
+  background-color: #222;
+  color: white;
+  font-family: sans-serif;
+  
+  /* Use flex layout to center inner content */
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* centers items horizontally */
+  justify-content: center;   /* centers items vertically */
+  
+  /* Optionally, set a max-width so that the section doesn't span too wide */
+  max-width: 600px;
+}
+
+#bubble-sort-section h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#bubble-sort-section p {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#bubble-sort-section input {
+  width: 80%;
+  padding: 8px;
+  margin: 5px 0;
+  font-size: 16px;
+  text-align: center;
+}
+
+#bubble-sort-section button {
+  padding: 8px 16px;
+  margin: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: green;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+#bubble-sort-section button:hover {
+  background-color: #4CAF50;
+}
+
+/* The container where the sorted array is displayed */
+#bubble-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;           /* Fixed height for blocks */
+  width: 100%;
+  border: 2px solid #fff;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #000;
+}
+
+/* Each array element as a fixed-size block */
+.bubble-bar {
+  position: relative;  /* So that the pointer arrow is positioned relative to the block */
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+  background-color: green;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid green;
+  border-radius: 4px;
+  transition: background-color 0.5s ease;
+}
+
+/* When an element is being compared, show it in red */
+.bubble-bar.swapping {
+  background-color: red;
+}
+
+/* Style for the pointer arrow */
+.swap-arrow {
+  position: absolute;
+  bottom: -25px; /* Adjust this value to control vertical positioning */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: yellow;
+}
